@@ -21,8 +21,8 @@ import (
 )
 
 var (
-	timeout = flag.DurationP("timeout", "t", 10*time.Minute, "how long wait for deleting pods")
-	sleep   = flag.DurationP("sleep", "s", time.Minute, "how log wait between each deployment restart")
+	timeout = flag.DurationP("timeout", "t", 10*time.Minute, "how long to wait for deleting pods")
+	sleep   = flag.DurationP("sleep", "s", time.Minute, "how long to wait between each deployment restart")
 )
 
 func main() {
@@ -66,7 +66,10 @@ func main() {
 }
 
 func getKubernetesCli() (*kubernetes.Clientset, error) {
-	kubeCfgPath := filepath.Join(os.Getenv("HOME"), ".kube", "config")
+	kubeCfgPath := os.Getenv("KUBECONFIG")
+	if kubeCfgPath == "" {
+		kubeCfgPath = filepath.Join(os.Getenv("HOME"), ".kube", "config")
+	}
 	kubeconfig, err := clientcmd.BuildConfigFromFlags("", kubeCfgPath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to build configuration from %q: %w", kubeCfgPath, err)

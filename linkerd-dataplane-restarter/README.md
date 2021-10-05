@@ -1,7 +1,8 @@
 # linkerd-dataplane-restarter
 
-Script slowly restarts all deployments in `default` namespace for which linkerd-proxy version differs with
-linkerd-proxy-injector from Control Plane.
+This CLI app slowly restarts all deployments in `default` namespace for which `linkerd-proxy` version differs from
+`linkerd-proxy-injector` from Control Plane. It aids the process of restarting all running deployments by minimizing the
+need for i.a. scaling while the restart of dependent services is in progress.
 
 ## Example scenario:
 
@@ -10,7 +11,7 @@ still running with the old version. In order to change this you would need to re
 know k8s, you might know that to do this you could just run `kubectl rollout restart deployment <your-deployment-name>`
 which would restart <your-deployment-name>.
 
-You could also run ` kubectl rollout restart deployment`, but this command restarts all deployment instantly.
+You could also run `kubectl rollout restart deployment`, but this command restarts all deployment instantly.
 
 The problem with this solution is that this requires a lot of resources and if your apps call other apps on start,
 others apps would scale unnecessary or be killed if wrongly configured.
@@ -24,6 +25,6 @@ with additional sleep between if wanted.
 $ linkerd-dataplane-restarter -h
 
 Usage of linkerd-dataplane-restarter:
-  -s, --sleep duration     how log wait between each deployment restart (default 1m0s)
-  -t, --timeout duration   how long wait for deleting pods (default 10m0s)
+  -s, --sleep duration     how long to wait between each deployment restart (default 1m0s)
+  -t, --timeout duration   how long to wait for deleting pods (default 10m0s)
 ```
