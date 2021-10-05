@@ -4,7 +4,7 @@ This CLI app slowly restarts all deployments in `default` namespace for which `l
 `linkerd-proxy-injector` from Control Plane. It aids the process of restarting all running deployments by minimizing the
 need for i.a. scaling while the restart of dependent services is in progress.
 
-## Example scenario:
+## Example scenario
 
 Imagine that you upgraded Linkerd Control Plane from version edge-21.9.1 to stable-2.11.0. All your Data Planes are
 still running with the old version. In order to change this you would need to restart all running deployments. If you
@@ -19,7 +19,13 @@ others apps would scale unnecessary or be killed if wrongly configured.
 In this scenario this app comes in handy. It checks which deployments require restarting and restarts them one-by-one
 with additional sleep between if wanted.
 
-## Usage:
+## Installation
+
+```shell
+go install github.com/shipwallet/public-tools/linkerd-dataplane-restarter@latest
+```
+
+## Usage
 
 ```shell
 $ linkerd-dataplane-restarter -h
