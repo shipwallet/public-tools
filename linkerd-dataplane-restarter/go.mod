@@ -1,4 +1,4 @@
-module github.com/shipwallet/public-tools/slow-restart
+module github.com/shipwallet/public-tools/linkerd-dataplane-restarter
 
 go 1.17
 

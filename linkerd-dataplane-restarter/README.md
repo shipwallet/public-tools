@@ -1,4 +1,4 @@
-# slow-restart
+# linkerd-dataplane-restarter
 
 Script slowly restarts all deployments in `default` namespace for which linkerd-proxy version differs with
 linkerd-proxy-injector from Control Plane.
@@ -21,9 +21,9 @@ with additional sleep between if wanted.
 ## Usage:
 
 ```shell
-$ slow-restart -h
+$ linkerd-dataplane-restarter -h
 
-Usage of slow-restart:
+Usage of linkerd-dataplane-restarter:
   -s, --sleep duration     how log wait between each deployment restart (default 1m0s)
   -t, --timeout duration   how long wait for deleting pods (default 10m0s)
 ```
