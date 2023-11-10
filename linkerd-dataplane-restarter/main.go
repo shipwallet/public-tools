@@ -26,6 +26,10 @@ var (
 )
 
 func main() {
+	if len(os.Args) == 2 && os.Args[1] == "_extension-metadata" {
+		return
+	}
+
 	flag.Parse()
 
 	ctx := context.Background()
